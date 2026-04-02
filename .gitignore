@@ -10,3 +10,5 @@ coverage/
 .idea/
 .vscode/ 
 .yarn.lock
+.next/
+.env.local
