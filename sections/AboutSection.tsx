@@ -78,6 +78,9 @@ export default function AboutSection() {
               {/* Floating cute tags */}
               {[
                 { label: "React ⚛️", pos: "-top-2 -right-4" },
+                { label: "TypeScript 💙", pos: "top-3 left-2" },
+                { label: "Mobile Dev 📱", pos: "top-6 -left-4" },
+                {label: "React Native 🌟", pos: "bottom-6 right-4" },
                 { label: "Next.js 🚀", pos: "bottom-4 -left-6" },
                 { label: "10+ yrs ✨", pos: "-bottom-2 right-2" },
               ].map(({ label, pos }) => (
