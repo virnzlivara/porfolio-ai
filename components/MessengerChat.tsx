@@ -6,6 +6,9 @@ declare global {
     fbAsyncInit: () => void;
     FB: {
       init: (options: { xfbml: boolean; version: string }) => void;
+      XFBML?: {
+        parse: (element?: HTMLElement | Document) => void;
+      };
     };
   }
 }
@@ -31,6 +34,20 @@ export default function MessengerChat() {
       script.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
       script.async = true;
       script.defer = true;
+      // Ensure we initialise and parse XFBML after the SDK loads
+      script.onload = () => {
+        try {
+          window.FB.init({ xfbml: true, version: "v18.0" });
+          // parse the document (safely, if available)
+          window.FB.XFBML && window.FB.XFBML.parse && window.FB.XFBML.parse(document);
+        } catch (e) {
+          // ignore init/parse errors here; they'll show in console if present
+          // but don't crash the app
+          // eslint-disable-next-line no-console
+          console.warn("FB SDK load/init failed:", e);
+        }
+      };
+
       document.body.appendChild(script);
     }
   }, []);
